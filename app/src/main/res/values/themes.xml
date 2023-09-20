@@ -1,0 +1,38 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.GHUs" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- Primary brand color. -->
+<!--        <item name="colorPrimary">@color/p_40</item>-->
+<!--        <item name="colorPrimaryVariant">@color/p_10</item>-->
+<!--        <item name="colorOnPrimary">@color/white</item>-->
+<!--        &lt;!&ndash; Secondary brand color. &ndash;&gt;-->
+<!--        <item name="colorSecondary">@color/s_40</item>-->
+<!--        <item name="colorSecondaryVariant">@color/s_30</item>-->
+<!--        <item name="colorOnSecondary">@color/s_10</item>-->
+<!--        &lt;!&ndash; Status bar color. &ndash;&gt;-->
+<!--        <item name="android:statusBarColor">?attr/colorPrimary</item>-->
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.GHUs" parent="Base.Theme.GHUs" />
+    <style name="TextView" parent="Theme.GHUs">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?attr/colorOnSecondaryContainer</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    
+    <style name="TextView.Small" parent="TextView" >
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextView.Medium" parent="TextView" >
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextView.Large" parent="TextView" >
+        <item name="android:textSize">22sp</item>
+    </style>
+
+</resources>
