@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.dicodingsm.ghus.ui.MainFragment"
+        android:name="com.dicodingsm.ghus.ui.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -16,7 +16,11 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.dicodingsm.ghus.ui.DetailFragment"
+        android:name="com.dicodingsm.ghus.ui.detail.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
 </navigation>

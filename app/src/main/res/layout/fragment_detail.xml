@@ -1,89 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.DetailFragment">
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/civ_user"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="48dp"
-        android:src="@drawable/ic_ava"
-        app:civ_border_color="?attr/colorOnPrimaryContainer"
-        app:civ_border_width="2dp"
-        app:civ_circle_background_color="?attr/colorOnTertiary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_username"
-        style="@style/TextView.Large"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@id/civ_user"
-        app:layout_constraintStart_toStartOf="@id/civ_user"
-        app:layout_constraintTop_toBottomOf="@id/civ_user"
-        tools:text="Username" />
-
-    <TextView
-        android:id="@+id/tv_company"
-        style="@style/TextView"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@id/civ_user"
-        app:layout_constraintStart_toStartOf="@id/civ_user"
-        app:layout_constraintTop_toBottomOf="@id/tv_username"
-        tools:text="Username" />
-
-    <TextView
-        android:id="@+id/tv_follower"
-        style="@style/TextView"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toStartOf="@id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_company"
-        tools:text="Username" />
-
-    <TextView
-        android:id="@+id/tv_following"
-        style="@style/TextView"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/tv_company"
-        tools:text="Username" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.5"/>
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_company"
-        android:layout_marginTop="48dp"
-        app:tabIndicatorHeight="2dp"
-        app:tabTextColor="?attr/colorOnSecondaryContainer"
-        app:tabIndicatorColor="?attr/colorOnSecondaryContainer"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    tools:context=".ui.detail.DetailFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vp_list_follow"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="?attr/colorSecondaryContainer"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tab_layout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        android:layout_height="wrap_content">
+        <ProgressBar
+            android:id="@+id/progress_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:translationZ="1dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/civ_user"
+            app:layout_constraintEnd_toEndOf="@id/civ_user"
+            app:layout_constraintTop_toTopOf="@id/civ_user"
+            app:layout_constraintBottom_toBottomOf="@id/civ_user"
+            />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_user"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="48dp"
+            android:src="@drawable/ic_ava"
+            app:civ_border_color="?attr/colorOnPrimaryContainer"
+            app:civ_border_width="2dp"
+            app:civ_circle_background_color="?attr/colorOnTertiary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_username"
+            style="@style/TextView.Large"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@id/civ_user"
+            app:layout_constraintStart_toStartOf="@id/civ_user"
+            app:layout_constraintTop_toBottomOf="@id/civ_user"
+            tools:text="Username" />
+
+        <TextView
+            android:id="@+id/tv_company"
+            style="@style/TextView"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@id/civ_user"
+            app:layout_constraintStart_toStartOf="@id/civ_user"
+            app:layout_constraintTop_toBottomOf="@id/tv_username"
+            tools:text="Username" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_percent="0.5"/>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company"
+            android:layout_marginTop="48dp"
+            app:tabIndicatorHeight="2dp"
+            app:tabTextColor="?attr/colorOnSecondaryContainer"
+            app:tabIndicatorColor="?attr/colorOnSecondaryContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_list_follow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorSecondaryContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tab_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

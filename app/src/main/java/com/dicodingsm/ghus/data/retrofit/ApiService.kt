@@ -1,7 +1,6 @@
 package com.dicodingsm.ghus.data.retrofit
 
 import com.dicodingsm.ghus.data.response.DetailUserResponse
-import com.dicodingsm.ghus.data.response.FollowResponseItem
 import com.dicodingsm.ghus.data.response.Items
 import com.dicodingsm.ghus.data.response.SearchResponse
 import retrofit2.Call
@@ -20,9 +19,8 @@ interface ApiService {
     @GET("users/{username}")
     fun detailUser(@Path("username") username : String) : Call<DetailUserResponse>
 
-    @GET("users/{username}/following")
-    fun followingUser(@Path("username") username : String) : Call<List<FollowResponseItem>>
+    @GET("users/{username}/{follow}")
+    fun getFollowUser(@Path("username") username : String, @Path("follow") followPath: String) : Call<List<Items>>
 
-    @GET("users/{username}/followers")
-    fun followersUser(@Path("username") username : String) : Call<List<FollowResponseItem>>
+
 }

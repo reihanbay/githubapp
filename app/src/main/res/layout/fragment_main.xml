@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainFragment">
+    tools:context=".ui.main.MainFragment">
 
     <com.google.android.material.search.SearchBar
         android:id="@+id/searchBar"
@@ -43,7 +43,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         tools:listitem="@layout/item_rv_user"
-        android:layout_marginHorizontal="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

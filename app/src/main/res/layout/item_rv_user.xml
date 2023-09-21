@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginHorizontal="16dp"
-    android:paddingVertical="12dp"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="8dp"
+    android:foreground="?attr/selectableItemBackground"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -21,39 +22,12 @@
         android:src="@drawable/ic_ava"/>
     <TextView
         android:id="@+id/tv_username"
-        style="@style/TextView.Medium"
+        style="@style/TextView.Large"
         tools:text="Username"
         android:layout_marginHorizontal="16dp"
         app:layout_constraintTop_toTopOf="@id/civ_user"
         app:layout_constraintStart_toEndOf="@id/civ_user"
-        />
-    <TextView
-        android:id="@+id/tv_following"
-        style="@style/TextView"
-        tools:text="Username"
-        android:layout_marginHorizontal="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_username"
         app:layout_constraintBottom_toBottomOf="@id/civ_user"
-        app:layout_constraintStart_toEndOf="@id/civ_user"
         />
 
-    <TextView
-        android:id="@+id/tv_follower"
-        style="@style/TextView"
-        tools:text="Username"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_username"
-        app:layout_constraintBottom_toBottomOf="@id/civ_user"
-        app:layout_constraintStart_toEndOf="@id/tv_following"
-        />
-
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        tools:text="Username"-->
-<!--        android:textSize="16sp"-->
-<!--        android:layout_marginHorizontal="8dp"-->
-<!--        app:layout_constraintTop_toTopOf="@id/civ_user"-->
-<!--        app:layout_constraintStart_toEndOf="@id/civ_user"-->
-<!--        />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

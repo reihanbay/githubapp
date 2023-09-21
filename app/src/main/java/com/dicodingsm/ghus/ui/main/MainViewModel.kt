@@ -1,10 +1,10 @@
-package com.dicodingsm.ghus.ui
+package com.dicodingsm.ghus.ui.main
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dicodingsm.ghus.data.response.Items
+import com.dicodingsm.ghus.data.response.SearchResponse
 import com.dicodingsm.ghus.data.retrofit.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,10 +17,12 @@ class MainViewModel : ViewModel() {
     private val _listUser = MutableLiveData<List<Items>>()
     val listUser : LiveData<List<Items>> = _listUser
 
+    private val _message = MutableLiveData<String>()
+    val message : LiveData<String> = _message
     init {
         getListUser()
     }
-    private fun getListUser() {
+    fun getListUser() {
         _isLoading.value = true
         val client = ApiConfig.getApiService().getListUsers()
         client.enqueue(object : Callback<List<Items>> {
@@ -30,14 +32,36 @@ class MainViewModel : ViewModel() {
                     _listUser.value = response.body()
                 } else {
                     _listUser.value = listOf()
-                    Log.d("TAG", "onResponse: ${response.message()}")
+                    _message.value = response.message()
                 }
             }
 
             override fun onFailure(call: Call<List<Items>>, t: Throwable) {
                 _isLoading.value = false
-                Log.d("TAG", "onResponse: ${t.message}")
+                _message.value = t.message
 
+
+            }
+        })
+    }
+
+    fun searchListUser(query: String) {
+        _isLoading.value = true
+        val client = ApiConfig.getApiService().searchUser(query)
+        client.enqueue(object : Callback<SearchResponse> {
+            override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _listUser.value = response.body()?.items
+                } else {
+                    _listUser.value = listOf()
+                    _message.value = response.message()
+                }
+            }
+
+            override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
+                _isLoading.value = false
+                _message.value = t.message
             }
         })
     }
