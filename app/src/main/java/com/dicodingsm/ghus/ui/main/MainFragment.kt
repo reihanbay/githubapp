@@ -76,7 +76,7 @@ class MainFragment : Fragment() {
 
     private fun initObservable() {
         viewModel.message.observe(viewLifecycleOwner) {
-            Snackbar.make(bind.root, it, Snackbar.LENGTH_SHORT).show()
+            if (it.isNotEmpty()) Snackbar.make(bind.root, it, Snackbar.LENGTH_SHORT).show()
         }
 
         viewModel.listUser.observe(viewLifecycleOwner){

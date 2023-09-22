@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.dicodingsm.ghus.R
 import com.dicodingsm.ghus.databinding.FragmentDetailBinding
 import com.dicodingsm.ghus.ui.adapter.SectionPagerAdapter
 import com.google.android.material.snackbar.Snackbar
@@ -32,7 +33,7 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getDetailUser(args.name)
+        viewModel.getDetailUser(args.data)
         initObservable()
 
     }
@@ -42,7 +43,7 @@ class DetailFragment : Fragment() {
         val listFragment= mutableListOf<Fragment>()
         title.forEach {
             val fragment = FollowFragment()
-            fragment.setData(args.name, it)
+            fragment.setData(args.data, it)
             listFragment.add(fragment)
         }
         vpAdapter = SectionPagerAdapter(listFragment, childFragmentManager, lifecycle)
@@ -56,7 +57,7 @@ class DetailFragment : Fragment() {
     private fun initObservable() {
 
         viewModel.message.observe(viewLifecycleOwner) {
-            Snackbar.make(bind.root, it, Snackbar.LENGTH_SHORT).show()
+            if (it.isNotEmpty()) Snackbar.make(bind.root, it, Snackbar.LENGTH_SHORT).show()
         }
         viewModel.isLoading.observe(viewLifecycleOwner){
             bind.progressHorizontal.isVisible = it
@@ -65,7 +66,7 @@ class DetailFragment : Fragment() {
         viewModel.user.observe(viewLifecycleOwner) {
             with(bind){
                 Glide.with(requireContext()).load(it.avatarUrl).into(civUser)
-                tvUsername.text = it.name
+                tvUsername.text = getString(R.string.text_username, it.name, it.login)
                 tvCompany.text = it.company ?: "Belum Diatur"
             }
 

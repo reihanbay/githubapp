@@ -1,5 +1,6 @@
 package com.dicodingsm.ghus.ui.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -33,6 +34,7 @@ class MainViewModel : ViewModel() {
                 } else {
                     _listUser.value = listOf()
                     _message.value = response.message()
+                    Log.d("TAG", "onResponse: ${response.message()}")
                 }
             }
 
