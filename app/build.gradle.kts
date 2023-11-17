@@ -17,11 +17,14 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "KEY", "\"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\"")
+        buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -38,6 +41,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 

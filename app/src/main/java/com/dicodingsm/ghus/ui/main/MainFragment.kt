@@ -1,6 +1,8 @@
 package com.dicodingsm.ghus.ui.main
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,8 +20,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class MainFragment : Fragment() {
 
-    private var binding : FragmentMainBinding? = null
-    private val bind get() = binding!!
+    private lateinit var bind : FragmentMainBinding
     private val viewModel: MainViewModel by viewModels()
     private val rvAdapter : UserAdapter by lazy { UserAdapter() }
     override fun onCreateView(
@@ -27,7 +28,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentMainBinding.inflate(inflater, container, false)
+        bind = FragmentMainBinding.inflate(inflater, container, false)
         return bind.root
     }
 
@@ -43,17 +44,15 @@ class MainFragment : Fragment() {
                 searchView.hide()
                 false
             }
-
-            searchView.editText.addTextChangedListener {
-                searchBar.text = it.toString()
+            searchView.editText.setOnFocusChangeListener { view, b ->
+                searchBar.text = searchView.editText.text.toString()
                 //doActionViewModel
-                if (it.toString().isEmpty()) {
+                if (searchView.editText.text.toString().isEmpty()) {
                     viewModel.getListUser()
                 } else {
-                    viewModel.searchListUser(it.toString())
+                    viewModel.searchListUser(searchView.editText.text.toString())
                 }
             }
-
             rvUser.apply {
                 adapter = rvAdapter
                 layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)

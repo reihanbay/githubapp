@@ -15,8 +15,7 @@ import com.dicodingsm.ghus.ui.adapter.UserAdapter
 import com.google.android.material.snackbar.Snackbar
 
 class FollowFragment : Fragment() {
-    private var binding: FragmentFollowBinding? = null
-    private val bind get() = binding!!
+    private lateinit var bind: FragmentFollowBinding
     private var username: String = ""
     private var path: String = ""
     private val rvAdapter : UserAdapter by lazy { UserAdapter() }
@@ -26,7 +25,7 @@ class FollowFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentFollowBinding.inflate(inflater, container, false)
+        bind = FragmentFollowBinding.inflate(inflater, container, false)
         return bind.root
     }
 
@@ -62,10 +61,6 @@ class FollowFragment : Fragment() {
     fun setData(user: String, pathFoll: String) {
         path = pathFoll
         username = user
-    }
-    override fun onDestroy() {
-        super.onDestroy()
-        binding = null
     }
 
 }

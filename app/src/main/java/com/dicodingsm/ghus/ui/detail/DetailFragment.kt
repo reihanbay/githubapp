@@ -17,8 +17,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import java.util.Locale
 
 class DetailFragment : Fragment() {
-    private var binding : FragmentDetailBinding? = null
-    private val bind get() = binding!!
+    private lateinit var bind : FragmentDetailBinding
     private val args : DetailFragmentArgs by navArgs()
     private val viewModel : DetailViewModel by viewModels()
     private lateinit var vpAdapter : SectionPagerAdapter
@@ -27,7 +26,7 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentDetailBinding.inflate(inflater, container, false)
+        bind = FragmentDetailBinding.inflate(inflater, container, false)
         return bind.root
     }
 
@@ -48,7 +47,6 @@ class DetailFragment : Fragment() {
         }
         vpAdapter = SectionPagerAdapter(listFragment, childFragmentManager, lifecycle)
         bind.vpListFollow.adapter = vpAdapter
-        bind.vpListFollow.isUserInputEnabled = false
         TabLayoutMediator(bind.tabLayout, bind.vpListFollow) { tab, position ->
             tab.text = "${count[position]?:""} ${title[position].capitalize(Locale.ROOT)}"
         }.attach()
@@ -65,11 +63,11 @@ class DetailFragment : Fragment() {
 
         viewModel.user.observe(viewLifecycleOwner) {
             with(bind){
+                vpListFollow.isVisible = true
                 Glide.with(requireContext()).load(it.avatarUrl).into(civUser)
                 tvUsername.text = getString(R.string.text_username, it.name, it.login)
                 tvCompany.text = it.company ?: "Belum Diatur"
             }
-
             val list = listOf(it.followers, it.following)
             initViewPager(list)
         }
